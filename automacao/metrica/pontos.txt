@@ -1,0 +1,6 @@
+# Copie este arquivo para config.json e ajuste os caminhos se necessário.
+# Formato: uma coordenada X,Y por linha.
+724932.3519,8246406.1143
+724950.0000,8246410.0000
+724970.0000,8246390.0000
+724960.0000,8246360.0000

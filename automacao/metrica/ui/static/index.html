@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Metrica Automacao UI</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Metrica Automacao</h1>
+    <p class="subtitle">Dashboard local para execucao unica e multiplos lotes.</p>
+
+    <div class="card" style="margin-bottom:16px;">
+      <h2>Execucao Unica</h2>
+      <div class="row" style="margin-bottom:8px;">
+        <input id="config-path" type="text" value="C:\Users\User\Documents\Playground\automacao\metrica\config.json" />
+      </div>
+      <div class="row">
+        <button id="run-real">Executar Real</button>
+        <button id="run-dry" class="secondary">Executar DryRun</button>
+        <button id="stop" class="danger" disabled>Parar</button>
+        <span id="status" class="badge idle">IDLE</span>
+      </div>
+      <p id="job-meta" class="small" style="margin-top:10px;">Nenhuma execucao iniciada.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <h2>Multiplos Lotes (Fila)</h2>
+      <p class="small">Informe um projeto por linha (ex.: arquivos `.TOPO1`).</p>
+      <textarea id="batch-projects" rows="6" placeholder="C:\caminho\lote1.TOPO1&#10;C:\caminho\lote2.TOPO1"></textarea>
+      <div class="row" style="margin-top:8px;">
+        <button id="batch-run-real">Rodar Lote Real</button>
+        <button id="batch-run-dry" class="secondary">Rodar Lote DryRun</button>
+        <button id="batch-stop" class="danger" disabled>Parar Lote</button>
+        <span id="batch-status" class="badge idle">IDLE</span>
+      </div>
+      <p id="batch-meta" class="small" style="margin-top:10px;">Nenhum lote em execucao.</p>
+      <div id="batch-items" class="list" style="margin-top:10px;"></div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Saida do Job</h2>
+        <pre id="job-output"></pre>
+      </div>
+
+      <div class="card">
+        <h2>Checklist <span id="checklist-stats" class="small"></span></h2>
+        <div class="row" style="margin-bottom:8px;">
+          <button id="refresh-checklist" class="secondary">Atualizar</button>
+        </div>
+        <pre id="checklist-content"></pre>
+      </div>
+
+      <div class="card">
+        <h2>Arquivos de Log</h2>
+        <div class="row" style="margin-bottom:8px;">
+          <button id="refresh-logs" class="secondary">Atualizar</button>
+        </div>
+        <div id="logs-list" class="list"></div>
+      </div>
+
+      <div class="card">
+        <h2>Conteudo do Log</h2>
+        <pre id="log-content"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
