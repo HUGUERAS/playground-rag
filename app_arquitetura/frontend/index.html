@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Unificado - Conversas IA</title>
+  <style>
+    :root {
+      --bg: #f1f5fb;
+      --text: #17233a;
+      --muted: #5f6d83;
+      --card: #ffffff;
+      --border: #d7e0f0;
+      --primary: #1b56f1;
+      --secondary: #304b73;
+      --warn: #ba7c00;
+      --danger: #a52323;
+      --ok: #138f4b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top right, #e8f0ff, var(--bg) 55%);
+    }
+    .container {
+      max-width: 1120px;
+      margin: 24px auto;
+      padding: 0 16px 24px;
+    }
+    h1 { margin: 0 0 8px; }
+    .subtitle { margin: 0 0 18px; color: var(--muted); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 8px 22px rgba(30, 65, 126, 0.08);
+    }
+    .card h2 { margin: 0 0 10px; font-size: 1.05rem; }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    input, textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px;
+      font: inherit;
+      margin-bottom: 8px;
+      color: var(--text);
+      background: #fff;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    .btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 9px 12px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button.secondary { background: var(--secondary); }
+    button.warn { background: var(--warn); }
+    button.danger { background: var(--danger); }
+    button:disabled { opacity: 0.65; cursor: wait; }
+    .line {
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .ok { color: var(--ok); }
+    .bad { color: var(--danger); }
+    pre {
+      margin: 0;
+      background: #0c1628;
+      color: #deecff;
+      border-radius: 8px;
+      min-height: 90px;
+      max-height: 280px;
+      overflow: auto;
+      padding: 10px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>App Criado a Partir das Conversas</h1>
+    <p class="subtitle">Funcoes derivadas: login de Topografo, onboarding Rural, ativacao Urbana, RAG e Metrica.</p>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Health + Funcoes</h2>
+        <div id="healthLine" class="line">Carregando...</div>
+        <div class="btn-row">
+          <button id="btnHealth">Atualizar Health</button>
+          <button id="btnFunctions" class="secondary">Listar Funcoes</button>
+        </div>
+        <pre id="healthOut"></pre>
+      </section>
+
+      <section class="card">
+        <h2>Topografo - Login</h2>
+        <input id="techEmail" placeholder="E-mail" value="topografo@demo.com" />
+        <input id="techPassword" placeholder="Senha" value="1234" />
+        <div class="btn-row">
+          <button id="btnTechLogin">Login Topografo</button>
+          <button id="btnSnapshot" class="secondary">Snapshot</button>
+        </div>
+        <pre id="techOut"></pre>
+      </section>
+
+      <section class="card">
+        <h2>Proprietario - Rural Onboard</h2>
+        <input id="rOwner" placeholder="Nome do proprietario" value="Maria Souza" />
+        <input id="rFarm" placeholder="Nome da fazenda" value="Fazenda Nova" />
+        <div class="field-row">
+          <input id="rArea" placeholder="Area (ha)" value="120.5" />
+          <input id="rState" placeholder="UF" value="SP" />
+        </div>
+        <input id="rCity" placeholder="Cidade" value="Ribeirao Preto" />
+        <div class="btn-row">
+          <button id="btnRural">Registrar Rural</button>
+        </div>
+        <pre id="ruralOut"></pre>
+      </section>
+
+      <section class="card">
+        <h2>Agricultor - Urban Activate</h2>
+        <input id="uOwner" placeholder="Nome do responsavel" value="Carlos Lima" />
+        <input id="uCode" placeholder="Codigo do imovel" value="IMV-001" />
+        <div class="field-row">
+          <input id="uCity" placeholder="Cidade" value="Campinas" />
+          <input id="uState" placeholder="UF" value="SP" />
+        </div>
+        <div class="btn-row">
+          <button id="btnUrban">Ativar Urbano</button>
+        </div>
+        <pre id="urbanOut"></pre>
+      </section>
+
+      <section class="card">
+        <h2>RAG</h2>
+        <textarea id="ragQuestion" placeholder="Pergunta para o RAG"></textarea>
+        <div class="btn-row">
+          <button id="btnRagAsk">Perguntar</button>
+          <button id="btnRagReindex" class="secondary">Reindexar</button>
+        </div>
+        <pre id="ragOut"></pre>
+      </section>
+
+      <section class="card">
+        <h2>Metrica</h2>
+        <input id="metricaConfig" placeholder="Config opcional (config.json)" />
+        <div class="btn-row">
+          <button id="btnMStartDry">Start Dry</button>
+          <button id="btnMStartReal" class="warn">Start Real</button>
+          <button id="btnMStop" class="danger">Stop</button>
+          <button id="btnMStatus" class="secondary">Status</button>
+        </div>
+        <pre id="metricaOut"></pre>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    async function api(url, method = "GET", body = null) {
+      const response = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: body ? JSON.stringify(body) : null,
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(data.detail || "Falha na API");
+      }
+      return data;
+    }
+
+    function setBusy(id, busy) {
+      const el = document.getElementById(id);
+      if (el) el.disabled = busy;
+    }
+
+    function print(id, data) {
+      document.getElementById(id).textContent = typeof data === "string" ? data : JSON.stringify(data, null, 2);
+    }
+
+    async function refreshHealth() {
+      try {
+        const data = await api("/health");
+        document.getElementById("healthLine").innerHTML = `API: <strong class="${data.ok ? "ok" : "bad"}">${data.ok ? "OK" : "FALHA"}</strong> | RAG: <strong class="${data.rag_ready ? "ok" : "bad"}">${data.rag_ready ? "PRONTO" : "INDISPONIVEL"}</strong>`;
+        print("healthOut", data);
+      } catch (err) {
+        print("healthOut", `Erro: ${err.message}`);
+      }
+    }
+
+    document.getElementById("btnHealth").addEventListener("click", refreshHealth);
+
+    document.getElementById("btnFunctions").addEventListener("click", async () => {
+      try {
+        print("healthOut", await api("/api/spec/functions"));
+      } catch (err) {
+        print("healthOut", `Erro: ${err.message}`);
+      }
+    });
+
+    document.getElementById("btnTechLogin").addEventListener("click", async (ev) => {
+      setBusy("btnTechLogin", true);
+      try {
+        const payload = {
+          email: document.getElementById("techEmail").value.trim(),
+          password: document.getElementById("techPassword").value.trim(),
+        };
+        print("techOut", await api("/api/tech/login", "POST", payload));
+      } catch (err) {
+        print("techOut", `Erro: ${err.message}`);
+      } finally {
+        setBusy("btnTechLogin", false);
+      }
+    });
+
+    document.getElementById("btnRural").addEventListener("click", async () => {
+      setBusy("btnRural", true);
+      try {
+        const payload = {
+          owner_name: document.getElementById("rOwner").value.trim(),
+          farm_name: document.getElementById("rFarm").value.trim(),
+          area_hectares: Number(document.getElementById("rArea").value),
+          city: document.getElementById("rCity").value.trim(),
+          state: document.getElementById("rState").value.trim(),
+        };
+        print("ruralOut", await api("/api/rural/onboard", "POST", payload));
+      } catch (err) {
+        print("ruralOut", `Erro: ${err.message}`);
+      } finally {
+        setBusy("btnRural", false);
+      }
+    });
+
+    document.getElementById("btnUrban").addEventListener("click", async () => {
+      setBusy("btnUrban", true);
+      try {
+        const payload = {
+          owner_name: document.getElementById("uOwner").value.trim(),
+          property_code: document.getElementById("uCode").value.trim(),
+          city: document.getElementById("uCity").value.trim(),
+          state: document.getElementById("uState").value.trim(),
+          active: true,
+        };
+        print("urbanOut", await api("/api/urban/activate", "POST", payload));
+      } catch (err) {
+        print("urbanOut", `Erro: ${err.message}`);
+      } finally {
+        setBusy("btnUrban", false);
+      }
+    });
+
+    document.getElementById("btnSnapshot").addEventListener("click", async () => {
+      try {
+        print("techOut", await api("/api/onboarding/snapshot"));
+      } catch (err) {
+        print("techOut", `Erro: ${err.message}`);
+      }
+    });
+
+    document.getElementById("btnRagAsk").addEventListener("click", async () => {
+      setBusy("btnRagAsk", true);
+      try {
+        const question = document.getElementById("ragQuestion").value.trim();
+        if (!question) {
+          print("ragOut", "Digite uma pergunta.");
+        } else {
+          print("ragOut", await api("/rag/query", "POST", { question }));
+        }
+      } catch (err) {
+        print("ragOut", `Erro: ${err.message}`);
+      } finally {
+        setBusy("btnRagAsk", false);
+      }
+    });
+
+    document.getElementById("btnRagReindex").addEventListener("click", async () => {
+      setBusy("btnRagReindex", true);
+      try {
+        print("ragOut", await api("/rag/reindex", "POST"));
+        await refreshHealth();
+      } catch (err) {
+        print("ragOut", `Erro: ${err.message}`);
+      } finally {
+        setBusy("btnRagReindex", false);
+      }
+    });
+
+    document.getElementById("btnMStartDry").addEventListener("click", async () => {
+      setBusy("btnMStartDry", true);
+      try {
+        const cfg = document.getElementById("metricaConfig").value.trim();
+        print("metricaOut", await api("/metrica/start", "POST", { dry_run: true, config_path: cfg || null }));
+      } catch (err) {
+        print("metricaOut", `Erro: ${err.message}`);
+      } finally {
+        setBusy("btnMStartDry", false);
+      }
+    });
+
+    document.getElementById("btnMStartReal").addEventListener("click", async () => {
+      setBusy("btnMStartReal", true);
+      try {
+        const cfg = document.getElementById("metricaConfig").value.trim();
+        print("metricaOut", await api("/metrica/start", "POST", { dry_run: false, config_path: cfg || null }));
+      } catch (err) {
+        print("metricaOut", `Erro: ${err.message}`);
+      } finally {
+        setBusy("btnMStartReal", false);
+      }
+    });
+
+    document.getElementById("btnMStop").addEventListener("click", async () => {
+      try {
+        print("metricaOut", await api("/metrica/stop", "POST"));
+      } catch (err) {
+        print("metricaOut", `Erro: ${err.message}`);
+      }
+    });
+
+    document.getElementById("btnMStatus").addEventListener("click", async () => {
+      try {
+        print("metricaOut", await api("/metrica/status"));
+      } catch (err) {
+        print("metricaOut", `Erro: ${err.message}`);
+      }
+    });
+
+    refreshHealth();
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+# PROMPT FINAL - PLANEJAR E IMPLEMENTAR O APP
+
+Voce e um Engenheiro de Software Senior (arquitetura + implementacao).
+Trabalhe como dono tecnico do produto e entregue um plano executavel de MVP.
+
+## Contexto consolidado
+- Projeto multi-canal com historico de VS Code, Cursor e Antigravity.
+- Objetivo pratico: transformar o contexto acumulado em um app funcional com frontend + backend.
+- Sinais de dominio: fluxos para perfis distintos (ex.: Topografo, Proprietario, Agricultor).
+- Sinais tecnicos recorrentes: frontend web, backend HTTP/API, uso inicial de mocks e depois dados reais.
+- Sinais de operacao: necessidade de build, deploy e validacao ponta a ponta.
+
+## Requisitos obrigatorios da sua resposta
+1. Definir um MVP claro e enxuto para 2 semanas.
+2. Propor arquitetura completa:
+   - Frontend
+   - Backend
+   - Banco de dados
+   - Autenticacao/autorizacao
+   - Observabilidade
+3. Definir modelo de dados inicial (entidades, campos principais, relacionamentos).
+4. Definir contrato das APIs principais (rotas, metodos, payloads, respostas, erros).
+5. Entregar backlog priorizado (Must/Should/Could).
+6. Entregar plano de execucao por fases (Fase 1, Fase 2, Fase 3) com estimativa relativa.
+7. Definir plano de testes (unitario, integracao, e2e) com criterios de aceite objetivos.
+8. Listar riscos tecnicos e mitigacoes praticas.
+9. Propor estrategia de deploy inicial simples e barata.
+
+## Regras de qualidade
+- Nao invente requisitos sem marcar como suposicao.
+- Quando houver ambiguidade, forneca 2 opcoes com trade-offs.
+- Priorize simplicidade, baixo custo operacional e tempo de entrega.
+- Se faltar dado, assuma um caminho pragmatico e continue.
+
+## Formato da resposta (obrigatorio)
+- Use Markdown.
+- Estruture em secoes numeradas de 1 a 9.
+- Em cada secao, seja objetivo e acionavel.
+
+## Saida extra obrigatoria
+No final, inclua:
+1. "Prompt de Implementacao Fase 1" pronto para colar em outra IA e iniciar codigo.
+2. "Checklist de Go-Live MVP" com itens verificaveis.
