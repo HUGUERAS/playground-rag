@@ -1,6 +1,6 @@
 import os
 import glob
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -10,25 +10,36 @@ from langchain_classic.chains.combine_documents import create_stuff_documents_ch
 from langchain_core.prompts import ChatPromptTemplate
 
 # Configuration
-DOCUMENTS_PATH = r"C:\Users\User\Documents"
+DOCUMENTS_PATH = r"D:\RAG_DATA"  # Updated to point to the collected data folder
 EMBEDDING_MODEL = "nomic-embed-text:latest"
 LLM_MODEL = "qwen3:8b"
 PERSIST_DIRECTORY = r"C:\Users\User\Documents\Playground\chroma_db"
 
 def load_documents():
-    """Carrega todos os PDFs da pasta de documentos."""
-    pdf_files = glob.glob(os.path.join(DOCUMENTS_PATH, "*.pdf"))
+    """Carrega arquivos PDF, TXT, MD e Código da pasta de documentos."""
     documents = []
-    print(f"Encontrados {len(pdf_files)} arquivos PDF em {DOCUMENTS_PATH}")
     
-    for file_path in pdf_files:
-        try:
-            loader = PyPDFLoader(file_path)
-            docs = loader.load()
-            documents.extend(docs)
-            print(f"Carregado: {os.path.basename(file_path)}")
-        except Exception as e:
-            print(f"Erro ao carregar {file_path}: {e}")
+    # Supported extensions and their loaders
+    # Note: TextLoader works for most code/text files
+    patterns = ["*.pdf", "*.txt", "*.md", "*.py", "*.js", "*.html", "*.css", "*.java", "*.cpp", "*.json", "*.xml"]
+    
+    print(f"Varrendo pasta: {DOCUMENTS_PATH}")
+
+    for pattern in patterns:
+        files = glob.glob(os.path.join(DOCUMENTS_PATH, pattern))
+        for file_path in files:
+            try:
+                if file_path.endswith('.pdf'):
+                    loader = PyPDFLoader(file_path)
+                else:
+                    # Generic text loader for code and md
+                    loader = TextLoader(file_path, encoding='utf-8', autodetect_encoding=True)
+                    
+                docs = loader.load()
+                documents.extend(docs)
+                print(f"Carregado: {os.path.basename(file_path)}")
+            except Exception as e:
+                print(f"Erro ao carregar {file_path}: {e}")
             
     return documents
 
