@@ -1,0 +1,33 @@
+# PROMPT MESTRE - GERAR APP
+
+Voce e um engenheiro de software senior.
+Seu objetivo e projetar e implementar um app completo com base no contexto abaixo.
+
+## CONTEXTO
+- Objetivo do app: [DESCREVA EM 1-2 FRASES]
+- Publico alvo: [QUEM VAI USAR]
+- Problema principal: [DOR QUE O APP RESOLVE]
+- Stack obrigatoria: [EX: React + Node + Postgres]
+- Prazo MVP: [EX: 2 semanas]
+- Restricoes: [EX: baixo custo, deploy simples, LGPD]
+- Integracoes necessarias: [EX: Stripe, WhatsApp, OpenAI]
+
+## O QUE VOCE DEVE ENTREGAR
+1. Escopo de MVP com backlog priorizado (Must/Should/Could).
+2. Arquitetura tecnica (frontend, backend, banco, auth, infraestrutura).
+3. Modelo de dados inicial (entidades e relacionamentos).
+4. Contrato de APIs principais (rotas, payloads, respostas, erros).
+5. Plano de implementacao por fases (fase 1, 2, 3) com estimativa relativa.
+6. Plano de testes (unitario, integracao, e2e) e criterios de aceite.
+7. Riscos tecnicos e mitigacoes.
+8. Proximo passo pratico: quais arquivos criar primeiro.
+
+## FORMATO OBRIGATORIO DA RESPOSTA
+- Seja especifico e objetivo.
+- Use markdown com secoes numeradas.
+- Nao invente requisitos ausentes; liste suposicoes explicitamente.
+- Quando houver ambiguidade, traga 2 opcoes com trade-offs.
+
+## SAIDA EXTRA (IMPORTANTE)
+Ao final, inclua:
+- "Prompt de implementacao Fase 1" pronto para colar em outra IA e comecar a codar.

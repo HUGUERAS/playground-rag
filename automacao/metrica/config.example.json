@@ -1,0 +1,26 @@
+{
+  "MetricaExe": "",
+  "ProjectPath": "C:\\Users\\User\\Documents\\Playground\\_metrica_zip\\licinha  lotes_de_2_2_2026_as_3_46_33.TOPO1",
+  "PointsFile": "C:\\Users\\User\\Documents\\Playground\\automacao\\metrica\\pontos.txt",
+  "WindowTitleHint": "Metrica TOPO",
+  "OpenDialogTitles": ["Abrir", "Open"],
+  "PreCommands": ["LISTAR"],
+  "PostCommands": ["WB", "MEMORIAL"],
+  "Timing": {
+    "AfterStartMs": 3500,
+    "AfterOpenDialogMs": 1200,
+    "BetweenPointMs": 220,
+    "AfterCommandMs": 900
+  },
+  "LogDir": "C:\\Users\\User\\Documents\\Playground\\automacao\\metrica\\logs",
+  "Checklist": {
+    "Enabled": true,
+    "Path": "C:\\Users\\User\\Documents\\Playground\\automacao\\metrica\\checklist_roteiro.md"
+  },
+  "PostProcess": {
+    "Enabled": false,
+    "InputDir": "C:\\Users\\User\\Documents\\Playground\\saida_metrica",
+    "OutputDir": "C:\\Users\\User\\Documents\\Playground\\saida_geojson",
+    "Ogr2OgrExe": ""
+  }
+}
