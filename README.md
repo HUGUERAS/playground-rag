@@ -34,3 +34,12 @@ Imagine um estudante muito inteligente (o LLM). Sem o RAG, ele faz uma prova usa
 1. Instale as dependências: `pip install -r requirements.txt`
 2. Coloque seus PDFs na pasta `Documents`.
 3. Execute: `python rag.py`
+
+## Documentacao GeoAdmin
+
+O workspace agora inclui uma base documental consolidada em `geoadmin-docs/` com:
+
+- PRD e visao do produto.
+- Roadmap reorganizado por fases.
+- Mapeamento funcional das telas reais do app.
+- Materiais de referencia e arquivos de origem arquivados.
