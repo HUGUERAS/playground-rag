@@ -134,8 +134,6 @@ def ingest_from_zip(zip_path: Path, html_path: Path | None, output_root: Path, o
 
         inner_zip_bytes = extract_inner_zip_bytes(outer_zip)
         if inner_zip_bytes:
-            with zipfile.ZipFile(Path(zip_path.parent / "__tmp_inner_geoadmin.zip"), "w"):
-                pass
             tmp_path = output_root / "05-source-archive" / "__tmp_inner_geoadmin.zip"
             tmp_path.write_bytes(inner_zip_bytes)
             with zipfile.ZipFile(tmp_path) as inner_zip:

@@ -28,6 +28,7 @@ class ResultadoSubdivisao:
     linha_divisoria: list[tuple[float, float]]
     erro_m2: float
     metodo: str
+    iteracoes: int = 0
 
 
 def _validar_poligono(pontos: list[tuple[float, float]]) -> Polygon:
@@ -153,8 +154,10 @@ def subdividir_por_area(
     t = 0.5
     melhor_resultado: tuple[Polygon, Polygon, LineString] | None = None
     menor_erro = float("inf")
+    iteracoes = 0
 
     for _ in range(max_iter):
+        iteracoes += 1
         cx = v1[0] + t * proj_max * perp_x
         cy = v1[1] + t * proj_max * perp_y
 
@@ -216,6 +219,7 @@ def subdividir_por_area(
         linha_divisoria=[(round(p[0], 6), round(p[1], 6)) for p in pts_linha],
         erro_m2=round(menor_erro, 6),
         metodo="paralela_ao_lado",
+        iteracoes=iteracoes,
     )
 
 
@@ -271,6 +275,7 @@ def subdividir_por_vertice(
 
     melhor_resultado: tuple[Polygon, Polygon, list[tuple[float, float]]] | None = None
     menor_erro = float("inf")
+    iteracoes = 0
 
     for _, v_ini, v_fim in lados_nao_adjacentes:
         comprimento = _comprimento_lado(v_ini, v_fim)
@@ -280,6 +285,7 @@ def subdividir_por_vertice(
         t_min, t_max = 0.0, 1.0
 
         for _ in range(max_iter):
+            iteracoes += 1
             t = (t_min + t_max) / 2
             pt_corte = _ponto_na_linha(v_ini, v_fim, t)
 
@@ -338,6 +344,7 @@ def subdividir_por_vertice(
         linha_divisoria=pts_linha,
         erro_m2=round(menor_erro, 6),
         metodo=f"por_vertice_{indice_vertice}",
+        iteracoes=iteracoes,
     )
 
 
@@ -368,10 +375,12 @@ def subdividir_por_ponto_fixo(
 
     melhor_resultado: tuple[Polygon, Polygon, list[tuple[float, float]]] | None = None
     menor_erro = float("inf")
+    iteracoes = 0
 
     angulo_min, angulo_max = 0.0, 360.0
 
     for _ in range(max_iter):
+        iteracoes += 1
         angulo = (angulo_min + angulo_max) / 2
         rad = math.radians(angulo)
 
@@ -421,6 +430,7 @@ def subdividir_por_ponto_fixo(
         linha_divisoria=[(round(p[0], 6), round(p[1], 6)) for p in pts_linha],
         erro_m2=round(menor_erro, 6),
         metodo="por_ponto_fixo",
+        iteracoes=iteracoes,
     )
 
 

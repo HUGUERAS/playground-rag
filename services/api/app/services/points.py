@@ -49,7 +49,7 @@ def ensure_project(client: Client, project_id: str) -> dict[str, Any]:
     try:
         result = client.table("projetos").select("id, nome, status, deleted_at").eq("id", project_id).execute()
     except Exception as exc:
-        raise PointsError(401, "Projeto nao encontrado.", status_code=404) from exc
+        raise PointsError(450, "Erro ao consultar projeto no Supabase.", status_code=503) from exc
 
     projects = _unwrap_result(result)
     if not projects:
@@ -72,8 +72,8 @@ def _point_exists(client: Client, project_id: str, name: str) -> bool:
             .is_("deleted_at", "null")
             .execute()
         )
-    except Exception:
-        return False
+    except Exception as exc:
+        raise PointsError(305, "Falha ao verificar duplicidade de ponto no Supabase.", status_code=503) from exc
 
     return bool(_unwrap_result(result))
 

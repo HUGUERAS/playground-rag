@@ -2,9 +2,12 @@
 
 Migrations SQL oficiais do `GeoAdmin Pro` para Supabase/PostGIS.
 
+> **Fonte canonica de migrations:** `supabase/migrations/` (raiz do repositorio).
+> O Supabase CLI le automaticamente esse diretorio. Nao mantenha copias aqui para evitar divergencias.
+
 ## Ordem de execucao
 
-Execute os arquivos da pasta `migrations/` em ordem numerica no SQL Editor do Supabase.
+Execute os arquivos da pasta `supabase/migrations/` em ordem numerica no SQL Editor do Supabase.
 
 ## Convencoes
 
