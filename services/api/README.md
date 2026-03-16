@@ -34,6 +34,7 @@ O diretório legado `C:\Users\User\Documents\Playground\backend` foi descontinua
 
 ```powershell
 cd C:\Users\User\Documents\Playground\services\api
+python -m pip install -r requirements.txt
 python -m uvicorn app.main:app --reload
 ```
 
@@ -45,6 +46,12 @@ Copie `.env.example` para `.env` e preencha:
 - `GEOADMIN_SUPABASE_KEY`
 
 Se essas variaveis nao estiverem definidas, a API sobe normalmente, mas o healthcheck vai indicar que o Supabase ainda nao esta configurado.
+
+## Arquivos de apoio
+
+- `requirements.txt`: conjunto minimo de dependencias congeladas para instalar o backend em outra maquina.
+- `pyproject.toml`: metadata e dependencias principais do servico.
+- `C:\Users\User\Documents\Playground\scripts\import_project_points.py`: importador de pontos reais a partir de `KML`, `CSV` e `TXT` das pastas de trabalho ja mapeadas para projetos.
 
 ## Exemplo de payload
 
