@@ -105,7 +105,7 @@ def _to_shared_result(result: ResultadoSubdivisao, srid: int, unit: str) -> Subd
         ),
         poligono_parte_a=_tuple_points_to_models(result.poligono_a),
         poligono_parte_b=_tuple_points_to_models(result.poligono_b),
-        iteracoes=0,
+        iteracoes=result.iteracoes,
         erro_m2=round(result.erro_m2, 6),
         valido=True,
         unit=unit,
