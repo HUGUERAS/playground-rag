@@ -1,0 +1,21 @@
+[
+  {
+    "folder_name": "colinas 040",
+    "projeto_id": "d4bd8c4a-9cda-49c4-bb45-42b595c00e34",
+    "scanned_files": 177,
+    "parsed_points": 6571,
+    "inserted_points": 1274,
+    "skipped_points": 5291,
+    "invalid_points": 6,
+    "errors": [
+      "colinas 1.kml: falha ao parsear (unbound prefix: line 3, column 0)",
+      "Linhas_NovosGeos_Togim.kml: falha ao parsear (unbound prefix: line 3, column 0)",
+      "Poligonos_NovosGeos_Togim.kml: falha ao parsear (unbound prefix: line 3, column 0)",
+      "Togim_Geo_0402_Limite.kml: falha ao parsear (unbound prefix: line 3, column 0)",
+      "colinas 1.kml: falha ao parsear (unbound prefix: line 3, column 0)",
+      "Linhas_NovosGeos_Togim.kml: falha ao parsear (unbound prefix: line 3, column 0)",
+      "Poligonos_NovosGeos_Togim.kml: falha ao parsear (unbound prefix: line 3, column 0)",
+      "Togim_Geo_0402_Limite.kml: falha ao parsear (unbound prefix: line 3, column 0)"
+    ]
+  }
+]

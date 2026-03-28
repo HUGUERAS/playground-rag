@@ -4,3 +4,5 @@ __pycache__/
 .venv
 chroma_db/
 faiss_db/
+supabase/.temp/
+*.egg-info/
